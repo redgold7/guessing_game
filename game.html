@@ -1,24 +1,28 @@
 <script>
   (function() {
-      var answers = ['yankees', 27];
-      var guess = prompt('Which baseball team has won the most World Series?', 'Type answer here');
+      var answers1 = ['yankees','nyy','the yankees','the new york yankees','new york yankees','yanks'];
+      var answers2 = [27];
+      var guess1 = prompt('Which baseball team has won the most World Series?', 'Type answer here');
+      var guess2 = prompt('How many championships have they won?', 'Type answer here');
+      var correct = false;
+        for (var i = 0; i < answers1.length; i++) {
+          if (guess1.toLowerCase() === answers1[i])
+          { correct = true;
+            alert('Correct! Damn Yankees!');
+            break;
+          }
+            if ( !correct ) {
+            guess1 = prompt('Guess again!', 'Type answer here');
+          }
+        };
       while (true) {
-        if (guess.toLowerCase() === answers[0]) {
-          alert('Correct! Damn Yankees!');
-          break;
-        } else {
-          prompt('Guess again!', 'Type answer here');
-        }
-      }
-      var guess = prompt('How many championships have they won?', 'Type answer here');
-      while (true) {
-        if (guess == answers[1]) {
+        if (guess2 === answers2) {
           alert('Good job!');
           break;
-        } else if (guess < answers[1]) {
-          guess = Number.parseInt(prompt('They\'re better than that!'));
-        } else if (guess > answers[1]) {
-          guess = Number.parseInt(prompt('They\'re not THAT good!'));
+        } else if (guess2 < answers2) {
+          guess2 = Number.parseInt(prompt('They\'re better than that!'));
+        } else if (guess2 > answers2) {
+          guess2 = Number.parseInt(prompt('They\'re not THAT good!'));
         }
       }
   })();
