@@ -1,29 +1,62 @@
 <script>
   (function() {
-      var answers1 = ['yankees','nyy','the yankees','the new york yankees','new york yankees','yanks'];
-      var answers2 = [27];
-      var guess1 = prompt('Which baseball team has won the most World Series?', 'Type answer here');
-      var guess2 = prompt('How many championships have they won?', 'Type answer here');
-      var correct = false;
-        for (var i = 0; i < answers1.length; i++) {
-          if (guess1.toLowerCase() === answers1[i])
-          { correct = true;
-            alert('Correct! Damn Yankees!');
-            break;
-          }
-            if ( !correct ) {
-            guess1 = prompt('Guess again!', 'Type answer here');
+      var Question = function(name, question, answers, answer) {
+        this.name = name;
+        this.question = question;
+        this.answers = answers;
+        this.answer = answer;
+        this.correct = false;
+        this.askQuestion = function(){
+          this.guess = prompt(question);
+          this.checkAnswer();
+        };
+        this.checkAnswer = function() {
+          console.log(typeof(answer));
+          if (typeof(answer) !== 'number'){
+            for (var i = 0; i < this.answers.length; ++i) {
+              if (this.guess.toLowerCase() === this.answers[i]) {
+                this.correct = true;
+
+              } else {
+                this.correct = false;
+              }
+            }
+            if (this.correct) {
+                alert('Correct! ' + this.answer + " is the right answer!");
+            } else {
+                alert('Sorry, try again.');
+                this.askQuestion();
+            }
+          } else {
+              this.guess = Number.parseInt(this.guess);
+              if (this.guess !== NaN) {
+                if (this.guess === this.answer) {
+                  alert('Correct!');
+                } else if (this.guess < this.answer) {
+                  alert('They\'re better than that!');
+                  this.askQuestion();
+                } else {
+                  alert('They\'re not that good!');
+                  this.askQuestion();
+                }
+              } else {
+                alert('You need to enter a number for this answer, try again.');
+                this.askQuestion();
+              }
+
           }
         };
-      while (true) {
-        if (guess2 === answers2) {
-          alert('Good job!');
-          break;
-        } else if (guess2 < answers2) {
-          guess2 = Number.parseInt(prompt('They\'re better than that!'));
-        } else if (guess2 > answers2) {
-          guess2 = Number.parseInt(prompt('They\'re not THAT good!'));
-        }
-      }
+      };
+      var question1 = new Question('mostSeriesWinners', 'Which baseball team has won the most World Series?', ['yankees','nyy','the yankees','the new york yankees','new york yankees','yanks'], 'The New York Yankees');
+      var question2 = new Question('howManyWins', 'How many championships have they won?', 27, 27);
+      var correct = false;
+      console.log(question1);
+      console.log(question2);
+
+      question1.askQuestion();
+      question2.askQuestion();
+      alert("You won! You sure know a lot about the Yankees!");
+
+
   })();
 </script>
