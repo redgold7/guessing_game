@@ -4,3 +4,6 @@ For the first part, I used a simple if/else. The only thing I modified was addin
 For the second part, I used the same if/else as the example from class.
 
 We changed the first part to check an array of correct answers. We did this to improve usability by allwing multible correct answers. We separated the variables for each question.
+
+#Refactor
+Put state and game logic into a constructor function simplifying the code and eliminating dupication.
