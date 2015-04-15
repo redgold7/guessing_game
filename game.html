@@ -1,62 +1,17 @@
-<script>
-  (function() {
-      var Question = function(name, question, answers, answer) {
-        this.name = name;
-        this.question = question;
-        this.answers = answers;
-        this.answer = answer;
-        this.correct = false;
-        this.askQuestion = function(){
-          this.guess = prompt(question);
-          this.checkAnswer();
-        };
-        this.checkAnswer = function() {
-          console.log(typeof(answer));
-          if (typeof(answer) !== 'number'){
-            for (var i = 0; i < this.answers.length; ++i) {
-              if (this.guess.toLowerCase() === this.answers[i]) {
-                this.correct = true;
-
-              } else {
-                this.correct = false;
-              }
-            }
-            if (this.correct) {
-                alert('Correct! ' + this.answer + " is the right answer!");
-            } else {
-                alert('Sorry, try again.');
-                this.askQuestion();
-            }
-          } else {
-              this.guess = Number.parseInt(this.guess);
-              if (this.guess !== NaN) {
-                if (this.guess === this.answer) {
-                  alert('Correct!');
-                } else if (this.guess < this.answer) {
-                  alert('They\'re better than that!');
-                  this.askQuestion();
-                } else {
-                  alert('They\'re not that good!');
-                  this.askQuestion();
-                }
-              } else {
-                alert('You need to enter a number for this answer, try again.');
-                this.askQuestion();
-              }
-
-          }
-        };
-      };
-      var question1 = new Question('mostSeriesWinners', 'Which baseball team has won the most World Series?', ['yankees','nyy','the yankees','the new york yankees','new york yankees','yanks'], 'The New York Yankees');
-      var question2 = new Question('howManyWins', 'How many championships have they won?', 27, 27);
-      var correct = false;
-      console.log(question1);
-      console.log(question2);
-
-      question1.askQuestion();
-      question2.askQuestion();
-      alert("You won! You sure know a lot about the Yankees!");
-
-
-  })();
-</script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>World Series Trivia Game</title>
+</head>
+<body>
+  <header><h1>Play the World Series trivia game!</h1></header>
+  <p>Try to guess the answers to these questions about the World Series!</p>
+  <div id="questions"></div>
+  <div id="alerts"></div>
+  <p>Need some more practice? Click the link below to learn anything you want to know about Baseball history!</p>
+  <a href="http://www.baseball-reference.com/">Baseball Reference<a>
+  <p><img src="http://sampson.washcoll.edu/~jwillis2/Final%20Project/images/world_series.gif" alt="World Series Trophy"></p>
+  <script src="game.js"></script>
+</body>
+</html>
